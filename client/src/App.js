@@ -35,6 +35,24 @@ class App extends Component {
     })
   };
 
+   // this will restart the game (score back to zero and save topscore)
+   restart = () => {
+    // if score is greater than topscore do this
+    if (this.state.score > this.state.topscore) {
+      // using setState save the score to topscore if score is greater than topscore
+      this.setState({ topscore: this.state.score });
+      // set all the json items back to false
+      this.state.friends.forEach(friend => {
+        friend.clicked = false;
+      });
+      // create an alert that tells you to try again
+      alert("You lose, try again to beat your high score!");
+      // set the score back to zero
+      this.setState({ score: 0 });
+      return true;
+    };
+  };
+
   // // remove friend will add 1 to the score and randomize the order of the pictures
   // selectFriend = id => {
   //   // takes the friends array and sorts the pictures into a random order
