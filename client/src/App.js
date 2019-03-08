@@ -1,37 +1,37 @@
 import React, { Component } from "react";
-import FriendCard from "./components/FriendCard";
+import MemeCard from "./components/MemeCard";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
-import friends from "./friends.json";
+import memes from "./memes.json";
 
 class App extends Component {
   // Setting the variables in our state
   state = {
-    friends,
+    memes,
     score: 0,
     topscore: 0,
   };
 
   // using the template from the 
-  selectFriend = id => {
-    this.state.friends.find((a, b) => {
+  selectMeme = id => {
+    this.state.memes.find( (a, b) => {
       // for every item in the JSON
       if (a.id === id) {
         // if the clicked property is false do this (which they are all false by default)
-        if (friends[b].clicked === false) {
+        if (memes[b].clicked === false) {
           // change clicked property to true
-          friends[b].clicked = true;
+          memes[b].clicked = true;
           // add one to the score
-          this.setState({ friends, score: this.state.score + 1 });
-          // sort friends in a new random order
-          friends.sort(() => Math.random() - 0.5);
+          this.setState({ memes, score: this.state.score + 1 });
+          // sort memes in a new random order
+          memes.sort(() => Math.random() - 0.5);
           return true;
         }
         else {
           // else call the restart function that will restart the game as well as score
           this.restart();
         }
-      }
+      };
     })
   };
 
@@ -42,7 +42,7 @@ class App extends Component {
       // using setState save the score to topscore if score is greater than topscore
       this.setState({ topscore: this.state.score });
       // set all the json items back to false
-      this.state.friends.forEach(friend => {
+      this.state.memes.forEach(friend => {
         friend.clicked = false;
       });
       // create an alert that tells you to try again
@@ -53,14 +53,6 @@ class App extends Component {
     };
   };
 
-  // // remove friend will add 1 to the score and randomize the order of the pictures
-  // selectFriend = id => {
-  //   // takes the friends array and sorts the pictures into a random order
-  //   friends.sort(() => Math.random() - .5);
-
-  //   this.setState({ friends, score: this.state.score +1 });
-  // };
-
   render() {
     return (
       <Wrapper>
@@ -70,9 +62,9 @@ class App extends Component {
           <br></br>
           High Score: {this.state.topscore}
         </Title>
-        {this.state.friends.map(friend => (
-          <FriendCard
-            selectFriend={this.selectFriend}
+        {this.state.memes.map(friend => (
+          <MemeCard
+            selectMeme={this.selectMeme}
             id={friend.id}
             key={friend.id}
             name={friend.name}
