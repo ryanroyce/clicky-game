@@ -56,7 +56,7 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Title>React Memory Game
+        <Title>Meme Memory Game
           <br></br>
           Score: {this.state.score}
           <br></br>
