@@ -8,7 +8,7 @@ function FriendCard(props) {
         <img alt={props.name} src={props.image} onClick={() => props.selectFriend(props.id)} className="remove" />
       </div>
       <div className="content">
-        {props.name}
+       <br></br> {props.name}
       </div>
     </div>
   );
